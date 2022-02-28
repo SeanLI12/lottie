@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page Title</title>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@0.4.0/dist/lottie-player.js"></script>
+<style>
+  .buttons{
+    padding:16px;
+    box-sizing: border-box;
+  }
+  body{
+    text-align: center;
+    padding:0;
+    margin:0;
+  }
+  .dunk,
+  .cornor,
+  .red,
+  .olympic,
+  .goal,
+  .nbaplayer{
+    display: none;
+    width:150px;
+    height:150px;
+    margin:auto;
+    position: absolute;
+    top:calc( 50% - 75px);
+    left:calc( 50% - 75px);
+    z-index:2;
+  }
+  .nbaplayer{
+    width:300px;
+    height:168.65px;
+    top:calc( 50% - 84px);
+    left:calc( 50% - 150px);
+  }
+  .olympic{
+    left:calc( 50% - 50px);
+    top: calc( 50% - 75px);
+    width:100px;
+  }
+  .dunk.on,
+  .cornor.on,
+  .red.on,
+  .olympic.on,
+  .goal.on,
+  .nbaplayer.on{
+    display: block;
+  }
+  .loading{
+    display: block;
+    width:200px;
+    height:200px;
+    margin:auto;
+    position: absolute;
+    top:calc( 50% - 100px);
+    left:calc( 50% - 100px);
+    
+  }
+  .mt-container{
+    width:100%;
+    min-width: 359px;
+    height:206px;
+    position: relative;
+    background:white;
+    border:1px solid #cecece;
+  }
+  .loading-container{
+    text-align: center;
+    color:rgb(3, 3, 57);
+    width:100%;
+    padding-top:50px;
+  }
+  .court{
+    width:100%;
+    max-width:360px;
+    position:absolute;
+    top:0;
+    left:calc( 50% - 180px );
+    opacity:0;
+    display: block;
+    transition: opacity .3s;
+  }
+
+  .court.on{
+    opacity: 1;
+    
+  }
+  .background{
+    z-index:1;
+    width:100%;
+    height:180px;
+    background:rgba(255,255,255,0.9);
+    position:absolute;
+    left:0;
+    top:calc( 50% - 90px );
+    opacity: 0;
+    transition: opacity .3s;
+  }
+  .mt-container.on .background{
+    opacity: 1;
+  }
+  .buttons button{
+    display: block;
+    width:100%;
+    height:48px;
+  }
+</style>
+</head>
+<body>
+<div class="mt-container">
+  <div class="loading-container">
+    <lottie-player class="loading" autoplay loop mode="normal"></lottie-player>
+    Loading...
+  </div>
+  <img class="court" src=""></img>
+  <lottie-player class="cornor" mode="normal"></lottie-player>
+  <lottie-player class="dunk" mode="normal"></lottie-player>
+  <lottie-player class="red" mode="normal"></lottie-player>
+  <lottie-player class="olympic" mode="normal"></lottie-player>
+  <lottie-player class="nbaplayer" mode="normal"></lottie-player>
+  <div class="background"></div>
+</div>
+<div class="buttons">
+  <button id="start">DUNK</button>
+  <button id="cornor">CORNER</button>
+  <button id="red">RED CARD</button>  
+  <button id="olympic">OLYMPIC</button>
+  <button id="nbaplayer">NBA WINNER</button>
+  <button id="reset">RESET</button>
+</div>
+<div>
+  <div>Update text for NBA WINNER</div>
+  <div>
+    Score A:<input id="scroeA" type="text"/>
+  </div>
+  <div>
+    Score B:<input id="scroeB" type="text"/>
+  </div>
+  <div>
+    Time:<button id="count">Start Count</button>
+  </div>
+</div>
+</body>
+<script>
+let myInterval ;
+
+function init(loadingplayer) {
+  return new Promise(resolve => {
+    
+    loadingplayer.load("./loading.json");
+    loadingplayer.addEventListener("ready", () => {
+      resolve('loading animation resolved');
+    });
+  });
+}
+function loadAnimation1(player) {
+  return new Promise(resolve => {
+    player.load("./dunk_456.json");
+    player.addEventListener("ready", () => {
+      resolve('animation1 loaded');
+    });
+  });
+}
+function loadAnimation2(player) {
+  return new Promise(resolve => {
+    player.load("./cornor.json");
+    player.addEventListener("ready", () => {
+      resolve('animation2 loaded');
+    });
+  });
+}
+function loadAnimation3(player) {
+  return new Promise(resolve => {
+    player.load("./olympic.json");
+    player.addEventListener("ready", () => {
+      resolve('animation3 loaded');
+    });
+  });
+}
+function loadAnimation4(player) {
+  return new Promise(resolve => {
+    player.load("./redcard.json");
+    player.addEventListener("ready", () => {
+      resolve('animation4 loaded');
+    });
+  });
+}
+function loadAnimation5(player) {
+  return new Promise(resolve => {
+    player.load("./data.json");
+    player.addEventListener("ready", () => {
+      resolve('nbaplayer loaded');
+    });
+  });
+}
+
+function addeventlistForButton(player,cornorPlayer,olympicPlayer,redPlayer,nbaPlayer) {
+  return new Promise(resolve => {
+    document.getElementById("start").addEventListener("click",()=>{
+      document.querySelector(".mt-container").classList.add("on");
+      player.classList.remove('on');
+      cornorPlayer.classList.remove('on');
+      olympicPlayer.classList.remove('on');
+      redPlayer.classList.remove('on');
+      nbaPlayer.classList.remove('on');
+      player.classList.add('on');
+      player.play();
+    })
+    document.getElementById("cornor").addEventListener("click",()=>{
+      document.querySelector(".mt-container").classList.add("on");
+      player.classList.remove('on');
+      cornorPlayer.classList.remove('on');
+      olympicPlayer.classList.remove('on');
+      redPlayer.classList.remove('on');
+      nbaPlayer.classList.remove('on');
+      cornorPlayer.classList.add('on');
+      cornorPlayer.play();
+    })
+    document.getElementById("olympic").addEventListener("click",()=>{
+      document.querySelector(".mt-container").classList.add("on");
+      player.classList.remove('on');
+      cornorPlayer.classList.remove('on');
+      olympicPlayer.classList.remove('on');
+      redPlayer.classList.remove('on');
+      nbaPlayer.classList.remove('on');
+      olympicPlayer.classList.add('on');
+      olympicPlayer.play();
+    })
+    document.getElementById("red").addEventListener("click",()=>{
+      document.querySelector(".mt-container").classList.add("on");
+      player.classList.remove('on');
+      cornorPlayer.classList.remove('on');
+      olympicPlayer.classList.remove('on');
+      redPlayer.classList.remove('on');
+      nbaPlayer.classList.remove('on');
+
+      redPlayer.classList.add('on');
+      redPlayer.play();
+    })
+    document.getElementById("nbaplayer").addEventListener("click",()=>{
+      document.querySelector(".mt-container").classList.add("on");
+      player.classList.remove('on');
+      cornorPlayer.classList.remove('on');
+      olympicPlayer.classList.remove('on');
+      redPlayer.classList.remove('on');
+      nbaPlayer.classList.remove('on');
+
+      nbaPlayer.classList.add('on');
+      nbaPlayer.play();
+    })
+    document.getElementById("reset").addEventListener("click",()=>{
+      document.querySelector(".mt-container").classList.remove("on");
+      player.classList.remove('on');
+      cornorPlayer.classList.remove('on');
+      olympicPlayer.classList.remove('on');
+      redPlayer.classList.remove('on');
+      redPlayer.seek(0);
+      cornorPlayer.seek(0);
+      player.seek(0);
+      olympicPlayer.pause();
+      redPlayer.pause();
+      cornorPlayer.pause();
+      player.pause();
+      olympicPlayer.pause();
+      nbaPlayer.seek(0);
+      nbaPlayer.pause();
+    })
+    document.getElementById("count").addEventListener("click",()=>{
+      
+      let ti=0;
+      clearInterval(myInterval);
+      myInterval=setInterval(function () {
+        ti++;
+        if(ti==61){
+          ti=0;
+        }
+        nbaPlayer.shadowRoot.querySelectorAll("tspan")[4].innerHTML=":"+ti;
+      }, 1000);
+    })
+    document.querySelector('#scroeA').addEventListener('input', (event) => {
+      nbaPlayer.shadowRoot.querySelectorAll("tspan")[0].innerHTML=event.target.value;
+      
+    });
+    document.querySelector('#scroeB').addEventListener('input', (event) => {
+      nbaPlayer.shadowRoot.querySelectorAll("tspan")[1].innerHTML=event.target.value;
+      
+    });
+    resolve('listener added');
+  });
+}
+function putCourt(court) {
+  return new Promise(resolve => {
+    
+    court.src = './court.png';   
+    court.onload = function () {
+      court.classList.add("on");
+      resolve('court loaded');
+    };
+  });
+}
+const loadingplayer = document.querySelector(".loading");
+  const player = document.querySelector(".dunk");
+  const court = document.querySelector(".court");
+  const cornorPlayer = document.querySelector(".cornor");
+  const redPlayer = document.querySelector(".red");
+  const olympicPlayer = document.querySelector(".olympic");
+  const nbaPlayer = document.querySelector(".nbaplayer");
+async function asyncCall() {
+  
+  const resetButtton=document.querySelector(".reset");
+  await init(loadingplayer);
+  await loadAnimation1(player);
+  await loadAnimation2(cornorPlayer);
+  await loadAnimation3(olympicPlayer);
+  await loadAnimation4(redPlayer);
+  await loadAnimation5(nbaPlayer);
+  await putCourt(court);
+
+  await addeventlistForButton(player,cornorPlayer,olympicPlayer,redPlayer,nbaPlayer);
+  
+  // expected output: "resolved"
+}
+
+asyncCall();
+
+
+
+</script>
+</html>
