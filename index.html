@@ -31,14 +31,15 @@
   }
   .nbaplayer{
     width:300px;
+    height:169.06px;
+    top:calc( 50% - 85px);
+    left:calc( 50% - 150px);
+  }
+  .olympic{
+    width:300px;
     height:185.7px;
     top:calc( 50% - 85px);
     left:calc( 50% - 93px);
-  }
-  .olympic{
-    left:calc( 50% - 50px);
-    top: calc( 50% - 75px);
-    width:100px;
   }
   .dunk.on,
   .cornor.on,
@@ -126,8 +127,8 @@
   <button id="start">DUNK</button>
   <button id="cornor">CORNER</button>
   <button id="red">RED CARD</button>  
-  <button id="olympic">OLYMPIC</button>
-  <button id="nbaplayer">Goal</button>
+  <button id="olympic">GOAL</button>
+  <button id="nbaplayer">NBA WINNER</button>
   <button id="reset">RESET</button>
 </div>
 <div>
@@ -173,9 +174,9 @@ function loadAnimation2(player) {
 }
 function loadAnimation3(player) {
   return new Promise(resolve => {
-    player.load("./olympic.json");
+    player.load("./goal_new.json");
     player.addEventListener("ready", () => {
-      resolve('animation3 loaded');
+      resolve('goal loaded');
     });
   });
 }
@@ -189,9 +190,9 @@ function loadAnimation4(player) {
 }
 function loadAnimation5(player) {
   return new Promise(resolve => {
-    player.load("./goal_new.json");
+    player.load("./data.json");
     player.addEventListener("ready", () => {
-      resolve('goal loaded');
+      resolve('nba loaded');
     });
   });
 }
