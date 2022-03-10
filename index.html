@@ -172,7 +172,7 @@ function loadAnimation1(player) {
 }
 function loadAnimation2(player) {
   return new Promise(resolve => {
-    player.load("./cornor_new.json");
+    player.load("./corner_new.json");
     player.addEventListener("ready", () => {
       resolve('animation2 loaded');
     });
