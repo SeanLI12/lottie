@@ -29,6 +29,12 @@
     left:calc( 50% - 75px);
     z-index:2;
   }
+  .red{
+    width:433;
+    height:278px;
+    top:calc( 50% - 93px);
+    left:calc( 50% - 216.5px);
+  }
   .cornor{
     width:300px;
     height:185.7px;
@@ -188,7 +194,7 @@ function loadAnimation3(player) {
 }
 function loadAnimation4(player) {
   return new Promise(resolve => {
-    player.load("./redcard.json");
+    player.load("./redcard_new.json");
     player.addEventListener("ready", () => {
       resolve('animation4 loaded');
     });
