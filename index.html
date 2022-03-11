@@ -68,12 +68,13 @@
   }
   .loading{
     display: block;
-    width:200px;
-    height:200px;
+    width:100px;
+    height:100px;
+    
     margin:auto;
     position: absolute;
-    top:calc( 50% - 100px);
-    left:calc( 50% - 100px);
+    top:calc( 50% - 50px);
+    left:calc( 50% - 50px);
     
   }
   .mt-container{
@@ -166,7 +167,7 @@ let myInterval ;
 function init(loadingplayer) {
   return new Promise(resolve => {
     
-    loadingplayer.load("./loading.json");
+    loadingplayer.load("./95728-loading-19.json");
     loadingplayer.addEventListener("ready", () => {
       resolve('loading animation resolved');
     });
