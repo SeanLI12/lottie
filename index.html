@@ -70,7 +70,7 @@
     display: block;
     width:100px;
     height:100px;
-    
+
     margin:auto;
     position: absolute;
     top:calc( 50% - 50px);
@@ -130,7 +130,7 @@
 <div class="mt-container">
   <div class="loading-container">
     <lottie-player class="loading" autoplay loop mode="normal"></lottie-player>
-    Loading...
+    Loading <span class="percent">0</span>%...
   </div>
   <img class="court" src=""></img>
   <lottie-player class="cornor" mode="normal"></lottie-player>
@@ -327,14 +327,23 @@ const loadingplayer = document.querySelector(".loading");
   const olympicPlayer = document.querySelector(".olympic");
   const nbaPlayer = document.querySelector(".nbaplayer");
 async function asyncCall() {
+  let loadingTatal=6;
+  let progress=0;
   
+  document.querySelector(".percent");
   const resetButtton=document.querySelector(".reset");
   await init(loadingplayer);
+  document.querySelector(".percent").innerHTML= Math.round(100/loadingTatal);
   await loadAnimation1(player);
+  document.querySelector(".percent").innerHTML= Math.round((100/loadingTatal)*2);
   await loadAnimation2(cornorPlayer);
+  document.querySelector(".percent").innerHTML= Math.round((100/loadingTatal)*3);
   await loadAnimation3(olympicPlayer);
+  document.querySelector(".percent").innerHTML= Math.round((100/loadingTatal)*4);
   await loadAnimation4(redPlayer);
+  document.querySelector(".percent").innerHTML= Math.round((100/loadingTatal)*5);
   await loadAnimation5(nbaPlayer);
+  document.querySelector(".percent").innerHTML=100;
   await putCourt(court);
 
   await addeventlistForButton(player,cornorPlayer,olympicPlayer,redPlayer,nbaPlayer);
