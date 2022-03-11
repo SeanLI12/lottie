@@ -327,7 +327,7 @@ const loadingplayer = document.querySelector(".loading");
   const olympicPlayer = document.querySelector(".olympic");
   const nbaPlayer = document.querySelector(".nbaplayer");
 async function asyncCall() {
-  let loadingTatal=6;
+  let loadingTatal=7;
   let progress=0;
   
   document.querySelector(".percent");
@@ -343,9 +343,9 @@ async function asyncCall() {
   await loadAnimation4(redPlayer);
   document.querySelector(".percent").innerHTML= Math.round((100/loadingTatal)*5);
   await loadAnimation5(nbaPlayer);
-  document.querySelector(".percent").innerHTML=100;
+  document.querySelector(".percent").innerHTML= Math.round((100/loadingTatal)*6);
   await putCourt(court);
-
+  document.querySelector(".percent").innerHTML=100;
   await addeventlistForButton(player,cornorPlayer,olympicPlayer,redPlayer,nbaPlayer);
   
   // expected output: "resolved"
